@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+
+
+    <!-- AR -->
+    <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="https://cdn.rawgit.com/kripken/ammo.js/dcab07bf0e7f2b4b64c01dc45da846344c8f50be/builds/ammo.js"></script>
+    <script src="https://cdn.rawgit.com/takahirox/a-mmd/v1.0.3/build/a-mmd.min.js"></script>
+
+    <!-- AI -->
+    <!-- <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script> -->
+
+    <title>なん研</title>
+    <style>
+        @font-face {
+            font-family: 'nisiki';
+            src: url('./nishiki-teki.ttf') format('truetype');
+        }
+
+        #base {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            top: 0px;
+            left: 0px;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            -webkit-text-stroke: 1px #000;
+        }
+
+        header h1 {
+            margin: 0;
+            padding: 0;
+            font-family: "nisiki";
+        }
+
+        header small {
+            color: white;
+            -webkit-text-stroke: 0px;
+        }
+
+        footer {
+            position: fixed;
+            width: 100vw;
+            left: 20px;
+            bottom: 0px;
+        }
+
+        main {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            left: 0px;
+            top: 0px;
+        }
+
+        #ar-stage{
+            display: block;
+        }
+
+        main .card {
+            font-family: 'nisiki';
+            width: 80vw;
+            height: 80vh;
+            margin: 0 auto;
+            margin-top: 10vh;
+            color: whitesmoke;
+            background-color: rgb(10, 67, 255);
+            border-radius: 10vw;
+        }
+
+        .card .card-body {
+            font-family: 'nisiki';
+            margin: 5vw;
+        }
+
+        .card-body h1 {
+            font-size: 10vw;
+        }
+
+        .card-body p {
+            font-size: 4vw;
+        }
+
+        .card-body small {
+            font-size: 3vw;
+        }
+
+        .strong {
+            color: hsl(0, 100%, 59%);
+        }
+
+        .text-align-center {
+            text-align: center;
+        }
+
+        .button {
+            display: block;
+            text-decoration: none;
+            padding: 10px;
+            text-align: center;
+            width: 60vw;
+            font-size: 8vw;
+            margin: 0 auto;
+            background-color: hsl(0, 100%, 59%);
+            color: whitesmoke;
+            border-radius: 20px;
+        }
+
+        main .card-information {
+            width: 80vw;
+            height: 8vh;
+            margin: 0 auto;
+            margin-top: 10vh;
+            color: black;
+            background-color: rgb(120, 151, 255);
+            border-radius: 2vw;
+        }
+
+        .card .card-body {
+            font-family: 'nisiki';
+            margin: 3vw;
+        }
+
+        #enjoy-cat-card {
+            font-family: 'nisiki';
+            text-align: center;
+            height: 5vh;
+        }
+        #enjoy-cat-card h2{
+            font-size: 3.4vh;
+        }
+
+
+        .coin {
+            font-family: "nisiki";
+            font-size: 5vw;
+            width: 30vw;
+        }
+
+        .coin>div {
+            width: 30vw;
+        }
+
+        .box15 {
+            padding: 0.2em 0.5em;
+            margin: 2em 0;
+            color: #565656;
+            background: #ffeaea;
+            box-shadow: 0px 0px 0px 10px #ffeaea;
+            border: dashed 2px #ffc3c3;
+            border-radius: 8px;
+        }
+
+        .box15 p {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body style="margin: 0">
+    <a-scene embedded arjs vr-mode-ui="enabled: false;" light="defaultLightsEnabled: false">
+
+        <a-marker type="pattern" url="./cat_ne.patt">
+            <a-light type="point" color="white" position="0 100 0"></a-light>
+            <a-entity mmd-model="model:assets/cat3/茶トラねこ.pmx;" scale="0.5 0.5 0.5"></a-entity>
+        </a-marker>
+
+        <a-marker type="pattern" url="./default.patt">
+            <a-entity mmd-model="model:assets/cat3/黒ねこ.pmx;" scale="0.5 0.5 0.5"></a-entity>
+        </a-marker>
+
+        <a-marker type="pattern" url="./toilet.patt">
+            <a-light type="point" color="white" position="0 100 0"></a-light>
+            <a-gltf-model src="./assets/catTower.glb" position="0 0 0"></a-gltf-model>
+        </a-marker>
+
+        <a-marker type="pattern" url="./esa.patt">
+            <a-entity geometry="
+                primitive: torus;
+                radius: 1;
+                radiusTubular: 0.1;
+                segmentsTubular: 12;" rotation="0 0 0" position="0 0 0">
+            </a-entity>
+        </a-marker>
+
+        <a-entity camera></a-entity>
+    </a-scene>
+    <div id="base">
+        <!-- <header>
+            <h1>なんか研究したい会</h1>
+            <small>Providing a Comfortable Environment for Pets<br>Pet Ownership Simulation Using AR Technology </small>
+        </header> -->
+        <main>
+            <div class="card" id="landing-card">
+                <div class="card-body">
+                    <br>
+                    <h1>Let's have a pet in <strong class="strong">your room!</strong></h1>
+                    <p>Do you have any dreams to have a pet?</p>
+                    <p>Do you want to spend days with a cute cat?</p>
+                    <p>Now, let's do it on AR!</p>
+                    <p>Push button below to start AR assist.</p>
+                    <p>But... be careful to dangers around the cat!</p>
+                    <a href="javascript:dive();" class="button">Dive into AR.</a>
+                    <div class="text-align-center">
+                        <small>Bring your AR markers first.</small>
+                    </div>
+                </div>
+            </div>
+            <div class="card" id="first-step-card">
+                <div class="card-body">
+                    <br>
+                    <h1>Fist, you need to set <strong class="strong">Cat</strong> in your room!</h1>
+                    <small>Please bring your AR marker of <strong class="strong">Cat</strong>.</small>
+                    <p>It costs <strong>$120</strong>.</p>
+                    <a href="javascript:setcat();" class="button">I set a cat.</a>
+                </div>
+            </div>
+            <div class="card-information" id="enjoy-cat-card">
+                <div class="card-body">
+                    <h2>Enjoy with your cat....</h2>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="coin" id="cost">
+                <div class="box15">
+                    <p id="costvalue">You paid $0 so far.</p>
+                </div>
+            </div>
+        </footer>
+    </div> -->
+
+    <script>
+        const costElement = document.getElementById('cost');
+        const costvalueElement = document.getElementById('costvalue');
+        let costvalue = 0;
+
+        const cards = {
+            "landing": document.getElementById("landing-card"),
+            "first-step": document.getElementById("first-step-card"),
+            "enjoy-cat": document.getElementById("enjoy-cat-card")
+        }
+
+        function updateCost()
+        {
+            costvalueElement.innerText = `You paid $${costvalue} so far.`
+        }
+
+        function setEnabledCard(cardname)
+        {
+            for(name in cards)
+            {
+                if(name == cardname)
+                    cards[name].style.display = "block";
+                else
+                    cards[name].style.display = "none";
+            }
+        }
+
+        function disableAllCards()
+        {
+            for(name in cards)
+                cards[name].style.display = "none";
+        }
+
+        function dive()
+        {
+            // const stage = document.querySelector('#ar-stage');
+            // stage.style.display = "block";
+            setEnabledCard("first-step");
+            main();
+        }
+
+        function setcat()
+        {
+            costElement.style.display = "block";
+            costvalue += 120;
+            updateCost();
+            setEnabledCard("enjoy-cat");
+        }
+
+        function main()
+        {
+            const video = document.getElementById('arjs-video');
+            const videoTrack = video.srcObject.getVideoTracks()[0];
+            // write something incredible AI code here.
+
+        }
+
+        costElement.style.display = "none";
+        setEnabledCard("landing");
+    </script>
+</body>
+
+
+</html>

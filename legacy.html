@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <!-- A-Frame を読み込む -->
+    <!-- <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script> -->
+    <!-- <script type="importmap">{"imports": {"three": "https://threejs.org/build/three.module.js"}}</script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@v1.0.4/dist/aframe-master.min.js"></script> -->
+    <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+    <!-- <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script> -->
+    <!-- <script src="https://binzume.github.io/aframe-xylayout/dist/xylayout-all.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js"></script> -->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <!-- <script src="https://binzume.github.io/aframe-vrm/dist/aframe-vrm.js"></script> -->
+    <script src="https://cdn.rawgit.com/kripken/ammo.js/dcab07bf0e7f2b4b64c01dc45da846344c8f50be/builds/ammo.js"></script>
+    <!-- <script src="https://cdn.rawgit.com/takahirox/aframe-outline/v1.1.1/build/aframe-outline.min.js"></script> -->
+    <script src="https://cdn.rawgit.com/takahirox/a-mmd/v1.0.3/build/a-mmd.min.js"></script>
+    <!-- <script src="./resource/aframe-vrm.js"></script> -->
+    <title>なん研</title>
+    <style>
+        #base{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
+</head>
+
+<body style="margin: 0">
+    <a-scene embedded arjs vr-mode-ui="enabled: false;" light="defaultLightsEnabled: false">
+
+        <!-- 3DCGモデルを読み込む -->
+        <!-- <a-assets>
+            <a-asset-item id="mishe" src="./assets/mishe.glb"></a-asset-item>
+        </a-assets> -->
+
+
+        <!-- マーカーの.pattファイルを読み込む -->
+        <a-marker type="pattern" url="./default.patt">
+            <!-- <a-entity gltf-model="#mishe"></a-entity> -->
+            <!-- <a-gltf-model src="./assets/MisheVRM.vrm" position="0 0 0"></a-gltf-model> -->
+
+            <a-entity geometry="
+                primitive: torus;
+                radius: 1;
+                radiusTubular: 0.1;
+                segmentsTubular: 12;" rotation="0 0 0" position="0 0 0">
+            </a-entity light="type: ambient;" >
+                <a-entity mmd-model="model:assets/cat3/茶トラねこ.pmx;"></a-entity>
+            </a-entity>
+            <!-- <a-entity vrm="src:assets/MToonRusk_1.2.0.1.vrm;blink:true" vrm-anim="src:assets/jodo.vmd;" rotation="0 180 0" scale="3 3 3"></a-entity> -->
+            <!-- <a-entity vrm="src:assets/MisheVRM.vrm;blink:true" vrm-anim="src:assets/Turn_Pose.bvh;" rotation="0 180 0" scale="3 3 3"></a-entity> -->
+            <!-- <a-entity vrm="src:assets/mishe.vrm;blink:true" vrm-anim="" position="0 0 0" rotation="0 180 0" scale="0.1 0.1 0.1"></a-entity> -->
+        </a-marker>
+
+        <!-- カメラを追加 -->
+        <a-entity camera></a-entity>
+    </a-scene>
+    <div id="base">
+        <h1>なん研</h1>
+    </div>
+</body>
+
+</html>
